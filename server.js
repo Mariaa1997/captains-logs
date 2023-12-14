@@ -43,6 +43,17 @@ app.get('/new', (req, res) => {
 res.render('New')
 })
 
+//Create Route
+app.post('/logs', async (req, res)=> {
+    if(req.body.shipIsBroken === 'on') {
+        req.body.shipIsBroken = true;
+    } else {
+        req.body.shipIsBroken = false;
+    }
+    res.send(req.body)
+    console.log(req.body)
+})
+
 app.listen(3001, () => {
     console.log('listening');
 })

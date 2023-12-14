@@ -8,15 +8,15 @@ const app = express();
 const Logs = require('./models/logs');
 const jsxViewEngine = require('jsx-view-engine');
 
-//global configuration
-// const mongoURI = process.env.MONGO_URI;
-// const db = mongoose.connection;
+// global configuration
+const mongoURI = process.env.MONGO_URI;
+const db = mongoose.connection;
 
-// // Connect to Mongo
-// mongoose.connect(mongoURI);
-// mongoose.connection.once('open', () => {
-//     console.log('connected to mongo');
-// })
+// Connect to Mongo
+mongoose.connect(mongoURI);
+mongoose.connection.once('open', () => {
+    console.log('connected to mongo');
+})
 
 app.set('view engine', 'jsx');
 app.set('views', './views');
@@ -50,9 +50,27 @@ app.post('/logs', async (req, res)=> {
     } else {
         req.body.shipIsBroken = false;
     }
-    res.send(req.body)
-    console.log(req.body)
+    try {
+        const createdLogs = await Logs.create(req.body);
+        res.status(200).redirect('/show');
+    } catch (err) {
+        res.status(400).send(err);
+    }
+    // res.send(req.body)
+    // console.log(req.body)
 })
+
+// S - SHOW - show route displays details of an individual fruit
+app.get('/show', async (req, res) => {
+    // res.send(fruits[req.params.indexOfFruitsArray]);
+    try {
+        const foundLogs = await Logs.findById(req.params.id)
+        res.render('Show', { logs: foundLogs});
+    }catch (err){
+        res.status(400).send(err);
+    }
+})
+
 
 app.listen(3001, () => {
     console.log('listening');

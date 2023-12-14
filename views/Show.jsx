@@ -1,15 +1,15 @@
 const React = require('react');
-const Logs = require('../models/logs');
+
 class Show extends React.Component {
     render () {
-        const logs = this.props.logs;
+        const log = this.props.log;
 
         return (
             <div>
                 <h1> Show Page </h1>
-                <p>The {Logs.title} is {Logs.entry}</p>
+                <p>The {log.title} is {log.entry}</p>
                 <div>
-                {Logs.shipIsBroken ? 'Ship is Broken' : "Ship is NOT BROKEN!"}
+                {log.shipIsBroken ? 'Ship is Broken' : "Ship is NOT BROKEN!"}
                 </div>
             </div>
             

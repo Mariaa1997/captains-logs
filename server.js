@@ -34,8 +34,20 @@ app.use(express.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
 
 app.get('/', (req, res) => {
-    res.send("<h1>Hello</h1>")
+    res.send("<h1>Captains Logs</h1>")
 })
+//Index route
+app.get('/logs/', async (req, res) => {
+    // res.send(fruits);
+    try {
+        const foundLogs = await Logs.find({});
+        res.status(200).render('Index', {logs: foundLogs});
+    } catch (err) {
+        res.status(400).send(err);
+    }
+    
+});
+
 
 // New Route
 app.get('/new', (req, res) => {
@@ -64,7 +76,7 @@ app.post('/logs', async (req, res)=> {
 app.get('/show', async (req, res) => {
     // res.send(fruits[req.params.indexOfFruitsArray]);
     try {
-        const foundLogs = await Logs.findById(req.params.id)
+        const foundLogs = await Logs()
         res.render('Show', { logs: foundLogs});
     }catch (err){
         res.status(400).send(err);

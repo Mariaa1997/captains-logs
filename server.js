@@ -2,6 +2,7 @@ require('dotenv').config(); // Load ENV Variables
 const express = require('express'); //import express
 const methodOverride = require('method-override'); 
 const mongoose = require('mongoose')
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 
@@ -129,6 +130,6 @@ app.get('/logs/:id', async (req, res) => {
 })
 
 
-app.listen(3001, () => {
-    console.log('listening');
+app.listen(PORT, () => {
+    console.log(`server started on port ${PORT}`);
 })

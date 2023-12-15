@@ -9,7 +9,7 @@ class Index extends React.Component {
       <div>
         <h1>Logs Index Page</h1>
         <nav>
-          <a href="/new">Create a New Logs</a>
+          <a href="logs/new">Create a New Logs</a>
         </nav>
         <ul>
           {logs.map((log, i) => {

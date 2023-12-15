@@ -35,7 +35,8 @@ app.use(express.urlencoded({extended:false}));
 app.use(methodOverride('_method'));
 
 app.get('/', (req, res) => {
-    res.send("<h1>Captains Logs</h1>")
+    res.send(`<h1>Captain's Logs</h1> <a href = ${'/logs'} > Go to Index Page</a> <br/>`)
+   
 })
 //Index route
 app.get('/logs/', async (req, res) => {

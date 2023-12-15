@@ -10,6 +10,11 @@ class Show extends React.Component {
                 <p>The {log.title} is {log.entry}</p>
                 <div>
                 {log.shipIsBroken ? 'Ship is Broken' : "Ship is NOT BROKEN!"}
+                <br />
+                <br />
+                <br />
+                <br />
+                <a href= {'/logs'} > Go to Index Page</a> <br/>
                 </div>
             </div>
             

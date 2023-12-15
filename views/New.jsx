@@ -5,6 +5,7 @@ class New extends React.Component {
     return (
       <div>
         <h1>New Logs Page</h1>
+        <a href = {'/logs'} > Go to Index Page</a> <br/>
         {/* NOTE: action will be the route, method will be the HTTP verb */}
         <form action="/logs" method="POST">
           Title: <input type="text" name="title" />
